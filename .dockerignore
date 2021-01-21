@@ -1,0 +1,8 @@
+.vscode/
+.git/
+__pycache__/
+db/
+backup/
+
+# mypy cache
+mypy/
