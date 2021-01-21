@@ -16,7 +16,7 @@ TK
 
 ## Build
 
-1. docker build -f "Dockerfile" -t vss365today-admin:latest .
+1. `docker build -f "Dockerfile" -t vss365today-admin:latest .`
 
 ## License
 
