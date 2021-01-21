@@ -8,7 +8,11 @@ TK
 
 ## Install
 
-TK
+1. Install Python 3.9+ and [Poetry](https://python-poetry.org/) 1.1.0+
+1. Set missing configuration keys in appropriate `configuration/*.json` files
+1. Create secret files in appropriate place (default: `/app/secrets`)
+1. `poetry install`
+1. `poetry run flask run`
 
 ## Build
 
