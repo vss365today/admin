@@ -1,10 +1,12 @@
 # #vss365 today Admin
-> Administration control panel for #vss365 today
 
+> Administration control panel for #vss365 today
 
 ## Required Configuration
 
-TK
+- Running instance of [#vss365 today API](https://github.com/le717/vss365today-api/) (domain configurable)
+  - API key with api_key endpoint permission
+- Flask secret key
 
 ## Install
 
