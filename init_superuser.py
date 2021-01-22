@@ -1,8 +1,6 @@
 import sqlite3
-from os import fspath
 from pathlib import Path
 
-import sys_vars
 from passlib import pwd
 from passlib.hash import pbkdf2_sha256
 
@@ -18,7 +16,7 @@ def main():
         raise SystemExit(1)
 
     # Generate a random password and hash it
-    password = pwd.genword("strong")
+    password = pwd.genword("secure", length=20)
     password_hashed = pbkdf2_sha256.hash(password)
 
     # Create an API token for this user, giving it all permissions
@@ -33,26 +31,35 @@ def main():
         "has_settings": True,
         "has_subscription": True,
     }
-    created_token = api.post("api-key", data=request_body)["token"]
+    created_token = api.post("api-key", json=request_body)["token"]
 
     # Connect to the database
-    # TODO Handle creating the schema if needed
     db = sqlite3.connect((Path() / "db" / "database.db"))
     cursor = db.cursor()
 
-    # Record this user in the local db
+    # Check if the schema exists already
+    sql_schema_exists = (Path() / "db" / "5-check-if-schema-exists.sql").read_text()
+    cursor.execute(
+        sql_schema_exists,
+        {"table_name": "users"},
+    )
+
+    # The schema doesn't exist, create it
+    if cursor.fetchone() is None:
+        cursor.execute((Path() / "db" / "0-schema.sql").read_text())
+
+    # Record this user and API tokenin the local db
     sql_create_user = (Path() / "db" / "1-user-create.sql").read_text()
     sql_create_token = (Path() / "db" / "4-user-update-api-token.sql").read_text()
     cursor.execute(
         sql_create_user,
         {"username": username, "password": password_hashed, "is_superuser": 1},
     )
-
-    # Record the API token created for the user
     cursor.execute(
         sql_create_token,
         {"username": username, "api_token": created_token},
     )
+    cursor.commit()
     db.close()
 
     # Report the creation results
