@@ -4,9 +4,10 @@
 
 ## Required Configuration
 
-- Running instance of [#vss365 today API](https://github.com/le717/vss365today-api/) (domain configurable)
-  - API key with has_api_key permission
-- Flask secret key
+- Flask secret key (`SECRET_KEY_ADMIN`)
+- Running instance of [#vss365 today API](https://github.com/le717/vss365today-api/)
+  - Operating domain (`API_DOMAIN`)
+  - API key with has_api_key permission (`API_AUTH_TOKEN_ADMIN`)
 
 ## Install
 
