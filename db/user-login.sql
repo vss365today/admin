@@ -1,3 +1,3 @@
-SELECT 1
+SELECT password
 FROM users
-WHERE username = :username AND password = :password;
+WHERE username = :username;
