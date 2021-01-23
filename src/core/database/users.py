@@ -1,20 +1,20 @@
-from sqlite3 import Row
-from typing import Optional
+from typing import Literal
 
 from passlib.hash import pbkdf2_sha256
 
-from src.core.database.core import connect_to_db, get_sql
+from src.core.database.core import connect_to_db, convert_int_to_bool, get_sql
 
 
-__all__ = ["get_info", "login"]
+__all__ = ["get_info", "login", "set_last_login"]
 
 
-def get_info(username: str) -> Optional[Row]:
+def get_info(username: str) -> dict:
     """Get the user's information."""
     sql = get_sql("user-fetch-info")
     with connect_to_db() as db:
         db.execute(sql, {"username": username})
-        return db.fetchone()
+        user_info = dict(db.fetchone())
+    return convert_int_to_bool(user_info)
 
 
 def login(username: str, password: str) -> bool:
@@ -31,3 +31,11 @@ def login(username: str, password: str) -> bool:
 
     # Confirm this is a correct password
     return pbkdf2_sha256.verify(password.strip(), user_pass["password"])
+
+
+def set_last_login(username: str) -> Literal[True]:
+    """Update this user's last login datetime."""
+    sql = get_sql("user-login-update")
+    with connect_to_db() as db:
+        db.execute(sql, {"username": username.strip()})
+    return True

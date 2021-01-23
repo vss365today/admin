@@ -1,4 +1,5 @@
 from flask import flash, redirect, render_template, url_for
+from flask import session
 
 from src.blueprint import bp_root as root
 from src.core.database import users
@@ -26,6 +27,14 @@ def login():
         if not valid_login:
             flash("That is not a valid login.", "error")
             return redirect(url_for("root.index"))
+
+    # Update their last login datetime
+    users.set_last_login(form.data["username"])
+
+    # Fetch their info and store it in the session
+    session["USER_USERNAME"] = form.data["username"]
+    for k, v in users.get_info(form.data["username"]).items():
+        session[f"USER_{k.upper()}"] = v
 
     # TODO Redirect to the landing page
     return "Hello, world"
