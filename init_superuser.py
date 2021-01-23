@@ -20,7 +20,6 @@ def main():
     password_hashed = pbkdf2_sha256.hash(password)
 
     # Create an API token for this user, giving it all permissions
-    # TODO Use app token
     request_body = {
         "desc": f"Admin superuser {username} API key",
         "has_api_key": True,
@@ -31,7 +30,7 @@ def main():
         "has_settings": True,
         "has_subscription": True,
     }
-    created_token = api.post("api-key", json=request_body)["token"]
+    created_token = api.post("api-key", user_token=False, json=request_body)["token"]
 
     # Connect to the database
     db = sqlite3.connect((Path() / "db" / "database.db"))
