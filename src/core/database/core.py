@@ -11,6 +11,7 @@ __all__ = ["connect_to_db", "get_sql"]
 def connect_to_db() -> Iterator[sqlite3.Cursor]:
     """Context manager to connect to the local database."""
     db = sqlite3.connect((Path() / "db" / "database.db"))
+    db.row_factory = sqlite3.Row
     cursor = db.cursor()
     try:
         yield cursor
