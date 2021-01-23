@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
-  <title>#vss365 today Admin</title>
+  <title>{{ page_title }} | #vss365 today Admin</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   {{ GoogleFonts('https://fonts.googleapis.com/css2?family=Bad+Script&family=Josefin+Slab:wght@400;600;700&family=Karla:ital,wght@0,400;0,700;1,400;1,700') }}
 </head>
 
 <body>
+  {% include 'partials/flash-messages.jinja2' %}
+
   <header>
     <h1>#vss365 today <small>Admin</small></h1>
   </header>

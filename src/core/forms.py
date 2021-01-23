@@ -11,7 +11,7 @@ class FormUserLogin(FlaskForm):
         "Username",
         id="form-login-username",
         validators=[DataRequired()],
-        render_kw={"placeholder": "IAmAWriter"},
+        render_kw={"placeholder": "vss365Writer"},
     )
 
     password = PasswordField(
