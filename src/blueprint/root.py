@@ -36,6 +36,7 @@ def login():
     for k, v in users.get_info(form.data["username"]).items():
         session[f"USER_{k.upper()}"] = v
 
+    # TODO Actually login
     # TODO Redirect to the landing page
     return "Hello, world"
 
@@ -43,5 +44,6 @@ def login():
 @root.route("/logout")
 def logout():
     """Logout a user."""
+    # TODO Actually logout
     flash("You have been successfully logged out.", "info")
     return redirect(url_for("root.index"))

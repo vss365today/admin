@@ -19,7 +19,7 @@ def get_info(username: str) -> dict:
 
 def login(username: str, password: str) -> bool:
     """Atempt to login a user."""
-    # Query the  database for this username
+    # Query the database for this username
     sql = get_sql("user-login")
     with connect_to_db() as db:
         db.execute(sql, {"username": username.strip()})

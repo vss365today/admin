@@ -12,4 +12,5 @@ def init_extensions(app):
     """Load app extensions."""
     csrf.init_app(app)
     fonts.init_app(app)
+    # TODO Enable login_manager
     # login_manager.init_app(app)
