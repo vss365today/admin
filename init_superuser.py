@@ -58,7 +58,7 @@ def main():
         sql_create_token,
         {"username": username, "api_token": created_token},
     )
-    cursor.commit()
+    db.commit()
     db.close()
 
     # Report the creation results
