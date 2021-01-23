@@ -1,6 +1,6 @@
 from typing import Any, Union
 
-from flask import current_app
+from flask import session
 import requests
 import sys_vars
 
@@ -16,9 +16,8 @@ def __create_api_url(*args: str) -> str:
 
 def __get_auth_token(user_token: bool) -> dict:
     """Create HTTP header for accessing protected API endpoints."""
-    # TODO: Use the user's API token
     if user_token:
-        token = sys_vars.get("API_AUTH_TOKEN_ADMIN")
+        token = session["USER_API_TOKEN"]
 
     # Use the system API token
     else:
