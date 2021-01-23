@@ -13,7 +13,7 @@ def index() -> str:
     return render_template("root.html", **render_opts)
 
 
-@root.route("login", methods=["POST"])
+@root.route("/login", methods=["POST"])
 def login():
     """Login a user."""
     # Confirm we have form data
@@ -38,3 +38,10 @@ def login():
 
     # TODO Redirect to the landing page
     return "Hello, world"
+
+
+@root.route("/logout")
+def logout():
+    """Logout a user."""
+    flash("You have been successfully logged out.", "info")
+    return redirect(url_for("root.index"))
