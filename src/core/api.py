@@ -1,7 +1,9 @@
 from typing import Any, Union
 
+from flask import current_app
 import requests
 import sys_vars
+
 
 __all__ = ["get", "post", "put", "delete"]
 
