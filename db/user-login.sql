@@ -1,3 +1,3 @@
-SELECT api_token, is_superuser
+SELECT 1
 FROM users
 WHERE username = :username AND password = :password;
