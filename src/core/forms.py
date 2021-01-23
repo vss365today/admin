@@ -1,10 +1,22 @@
-from datetime import datetime
-from src.core import api
-
 from flask_wtf import FlaskForm
-from wtforms.fields.html5 import EmailField, SearchField, DateField
-from wtforms.validators import DataRequired, Email
-from wtforms_components import SelectField
+from wtforms.fields.simple import PasswordField, SubmitField, TextField
+from wtforms.validators import DataRequired
 
 
-__all__ = []
+__all__ = ["FormUserLogin"]
+
+
+class FormUserLogin(FlaskForm):
+    username = TextField(
+        "Username",
+        id="form-login-username",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "IAmAWriter"},
+    )
+
+    password = PasswordField(
+        "Password",
+        id="form-login-password",
+        validators=[DataRequired()],
+    )
+    submit = SubmitField("Login")
