@@ -2,8 +2,10 @@ from typing import Literal
 
 from passlib.hash import pbkdf2_sha256
 
+from src.core import api
 from src.core.database.core import connect_to_db, convert_int_to_bool, get_sql
 from src.core.models.User import User
+from src.core.models.Token import Token
 
 
 __all__ = ["get_info", "login", "set_last_login"]
@@ -12,11 +14,21 @@ __all__ = ["get_info", "login", "set_last_login"]
 def get_info(username: str) -> User:
     """Get the user's information."""
     sql = get_sql("user-fetch-info")
+
+    # Start by getting the user's account info
     with connect_to_db() as db:
         db.execute(sql, {"username": username})
-        user_info = dict(db.fetchone())
-    user_info = convert_int_to_bool(user_info)
-    return User(username, **user_info)
+        user_info = convert_int_to_bool(dict(db.fetchone()))
+
+    # Get the user's token permissions
+    token_perms: dict = api.get(
+        "api-key", user_token=False, params={"token": user_info["api_token"]}
+    )
+
+    # Store the permissions in a dataclass too
+    token_perms = {k: v for k, v in token_perms.items() if k.startswith("has_")}
+    token = Token(user_info["api_token"], **token_perms)
+    return User(username, **user_info), token
 
 
 def login(username: str, password: str) -> bool:

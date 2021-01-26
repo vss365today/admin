@@ -32,7 +32,7 @@ def login():
     users.set_last_login(form.data["username"])
 
     # Fetch their info and store it in the session
-    session["USER"] = users.get_info(form.data["username"])
+    session["USER"], session["TOKEN"] = users.get_info(form.data["username"])
     return redirect(url_for("root.dash"))
 
 
@@ -40,7 +40,10 @@ def login():
 def logout():
     """Logout a user."""
     # Remove the user object from the session
-    del session["USER"]
+    if "USER" in session:
+        del session["USER"]
+        del session["TOKEN"]
+
     flash("You have been successfully logged out.", "info")
     return redirect(url_for("root.index"))
 

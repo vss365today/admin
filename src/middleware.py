@@ -1,8 +1,9 @@
 from datetime import datetime
-from typing import Callable, Dict
+from typing import Callable, Dict, Union
 
 from flask import current_app, render_template, session
 from src.core.models.User import User
+from src.core.models.Token import Token
 
 
 @current_app.context_processor
@@ -20,8 +21,11 @@ def nav_cur_page() -> Dict[str, Callable]:
 
 
 @current_app.context_processor
-def current_user() -> Dict[str, User]:
-    return {"current_user": session.get("USER")}
+def current_user_info() -> Dict[str, Union[User, Token]]:
+    return {
+        "current_user": session.get("USER"),
+        "current_user_token": session.get("TOKEN"),
+    }
 
 
 @current_app.errorhandler(404)
