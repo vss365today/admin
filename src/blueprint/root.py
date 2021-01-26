@@ -9,7 +9,7 @@ from src.core.forms import FormUserLogin
 def index() -> str:
     """Site login page."""
     render_opts = {"form": FormUserLogin()}
-    return render_template("root.html", **render_opts)
+    return render_template("root/root.html", **render_opts)
 
 
 @root.route("/login", methods=["POST"])
@@ -47,4 +47,5 @@ def logout():
 @root.route("/dash")
 def dash():
     """Landing page after successful login."""
-    return "dash"
+    render_opts = {}
+    return render_template("root/dash.html", **render_opts)
