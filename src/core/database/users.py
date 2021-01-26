@@ -3,18 +3,20 @@ from typing import Literal
 from passlib.hash import pbkdf2_sha256
 
 from src.core.database.core import connect_to_db, convert_int_to_bool, get_sql
+from src.core.models.User import User
 
 
 __all__ = ["get_info", "login", "set_last_login"]
 
 
-def get_info(username: str) -> dict:
+def get_info(username: str) -> User:
     """Get the user's information."""
     sql = get_sql("user-fetch-info")
     with connect_to_db() as db:
         db.execute(sql, {"username": username})
         user_info = dict(db.fetchone())
-    return convert_int_to_bool(user_info)
+    user_info = convert_int_to_bool(user_info)
+    return User(username, **user_info)
 
 
 def login(username: str, password: str) -> bool:

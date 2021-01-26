@@ -32,9 +32,7 @@ def login():
     users.set_last_login(form.data["username"])
 
     # Fetch their info and store it in the session
-    session["USER_USERNAME"] = form.data["username"]
-    for k, v in users.get_info(form.data["username"]).items():
-        session[f"USER_{k.upper()}"] = v
+    session["USER"] = users.get_info(form.data["username"])
 
     # TODO Actually login
     # TODO Redirect to the landing page

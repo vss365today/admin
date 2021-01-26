@@ -1,7 +1,8 @@
 from datetime import datetime
 from typing import Callable, Dict
 
-from flask import current_app, render_template
+from flask import current_app, render_template, session
+from src.core.models.User import User
 
 
 @current_app.context_processor
@@ -16,6 +17,11 @@ def nav_cur_page() -> Dict[str, Callable]:
             "active" if has.strip() in title.strip().lower() else ""
         )
     }
+
+
+@current_app.context_processor
+def current_user() -> Dict[str, User]:
+    return {"current_user": session["USER"]}
 
 
 @current_app.errorhandler(404)
