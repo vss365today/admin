@@ -16,7 +16,6 @@ sys-vars = {url = "https://github.com/le717/sys-vars/releases/download/v3.0.0/sy
 flask-google-fonts = {url = "https://github.com/le717/flask-google-fonts/releases/download/v1.0.0/flask_google_fonts-1.0.0-py3-none-any.whl"}
 webargs = "^7.0.1"
 passlib = "^1.7.4"
-Flask-Login = "^0.5.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.4"

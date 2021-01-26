@@ -34,7 +34,6 @@ def login():
     # Fetch their info and store it in the session
     session["USER"] = users.get_info(form.data["username"])
 
-    # TODO Actually login
     # TODO Redirect to the landing page
     return "Hello, world"
 
@@ -42,6 +41,7 @@ def login():
 @root.route("/logout")
 def logout():
     """Logout a user."""
-    # TODO Actually logout
+    # Remove the user object from the session
+    del session["USER"]
     flash("You have been successfully logged out.", "info")
     return redirect(url_for("root.index"))

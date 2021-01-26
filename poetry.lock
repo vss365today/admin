@@ -135,17 +135,6 @@ type = "url"
 url = "https://github.com/le717/flask-google-fonts/releases/download/v1.0.0/flask_google_fonts-1.0.0-py3-none-any.whl"
 
 [[package]]
-name = "flask-login"
-version = "0.5.0"
-description = "User session management for Flask"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Flask = "*"
-
-[[package]]
 name = "flask-wtf"
 version = "0.14.3"
 description = "Simple integration of Flask and WTForms."
@@ -487,7 +476,7 @@ timezone = ["python-dateutil"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "1d34f6507da16b5c44d207c18979436f62cfb4c839ea6fc5a772871ec7fbab2e"
+content-hash = "4b6c8848c380369553c417ec58257c67e74d5f14453a9391e39a660f443b1aad"
 
 [metadata.files]
 appdirs = [
@@ -530,10 +519,6 @@ flask = [
     {file = "Flask-1.1.2.tar.gz", hash = "sha256:4efa1ae2d7c9865af48986de8aeb8504bf32c7f3d6fdc9353d34b21f4b127060"},
 ]
 flask-google-fonts = []
-flask-login = [
-    {file = "Flask-Login-0.5.0.tar.gz", hash = "sha256:6d33aef15b5bcead780acc339464aae8a6e28f13c90d8b1cf9de8b549d1c0b4b"},
-    {file = "Flask_Login-0.5.0-py2.py3-none-any.whl", hash = "sha256:7451b5001e17837ba58945aead261ba425fdf7b4f0448777e597ddab39f4fba0"},
-]
 flask-wtf = [
     {file = "Flask-WTF-0.14.3.tar.gz", hash = "sha256:d417e3a0008b5ba583da1763e4db0f55a1269d9dd91dcc3eb3c026d3c5dbd720"},
     {file = "Flask_WTF-0.14.3-py2.py3-none-any.whl", hash = "sha256:57b3faf6fe5d6168bda0c36b0df1d05770f8e205e18332d0376ddb954d17aef2"},

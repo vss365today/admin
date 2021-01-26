@@ -21,7 +21,7 @@ def nav_cur_page() -> Dict[str, Callable]:
 
 @current_app.context_processor
 def current_user() -> Dict[str, User]:
-    return {"current_user": session["USER"]}
+    return {"current_user": session.get("USER")}
 
 
 @current_app.errorhandler(404)
