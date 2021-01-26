@@ -1,5 +1,3 @@
-from typing import Callable, Optional
-
 from flask import Blueprint
 
 from src.core.auth_helpers import authorize_blueprint
