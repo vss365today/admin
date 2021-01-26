@@ -3,6 +3,7 @@ from flask import flash, redirect, render_template, session, url_for
 from src.blueprint import bp_root as root
 from src.core.database import users
 from src.core.forms import FormUserLogin
+from src.core.auth_helpers import authorize_route
 
 
 @root.route("/")
@@ -45,6 +46,7 @@ def logout():
 
 
 @root.route("/dash")
+@authorize_route
 def dash():
     """Landing page after successful login."""
     render_opts = {}
