@@ -1,5 +1,4 @@
-from flask import flash, redirect, render_template, url_for
-from flask import session
+from flask import flash, redirect, render_template, session, url_for
 
 from src.blueprint import bp_root as root
 from src.core.database import users
@@ -33,9 +32,7 @@ def login():
 
     # Fetch their info and store it in the session
     session["USER"] = users.get_info(form.data["username"])
-
-    # TODO Redirect to the landing page
-    return "Hello, world"
+    return redirect(url_for("root.dash"))
 
 
 @root.route("/logout")
@@ -45,3 +42,9 @@ def logout():
     del session["USER"]
     flash("You have been successfully logged out.", "info")
     return redirect(url_for("root.index"))
+
+
+@root.route("/dash")
+def dash():
+    """Landing page after successful login."""
+    return "dash"
