@@ -1,4 +1,7 @@
 <nav>
-  <a href="#">Config</a>
+  <a href="{{ url_for('api-key.index') }}">API Keys</a>
+  <a href="{{ url_for('config.index') }}">Config</a>
+  <a href="{{ url_for('host.index') }}">Hosts</a>
+  <a href="{{ url_for('prompt.index') }}">Prompts</a>
   <a href="{{ url_for('root.logout') }}">Logout</a>
 </nav>
