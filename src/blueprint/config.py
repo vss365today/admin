@@ -8,16 +8,11 @@ from src.core.helpers import split_hashtags_into_list
 
 @config.route("/")
 def index():
-    abort(404)
+    render_opts = {}
+    return render_template("config/index.html", **render_opts)
 
 
-@config.route("/config")
-def load():
-    render_opts = {"json_config": load_json_config()}
-    return render_template("admin/config.html", **render_opts)
-
-
-@config.route("/config/save", methods=["POST"])
+@config.route("/save", methods=["POST"])
 def save():
     # Get the submitted form data and current config
     form_data = request.form
