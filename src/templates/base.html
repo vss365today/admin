@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  {% include 'partials/flash-messages.html' %}
+  {% include 'partials/alerts.html' %}
   {% include 'partials/header.html' %}
 
   <main>
@@ -19,6 +19,6 @@
 
   {% include 'partials/footer.html' %}
 
-  <script src="{{ url_for('static', filename='js/flash-messages.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/alerts.js') }}"></script>
 </body>
 </html>
