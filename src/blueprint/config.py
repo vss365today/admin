@@ -2,8 +2,15 @@ from flask import request
 from flask import abort, flash, redirect, render_template, url_for
 
 from src.blueprint import bp_config as config
-from src.core.config import load_json_config, save_json_config
 from src.core.helpers import split_hashtags_into_list
+
+
+def load_json_config() -> dict:
+    return {}
+
+
+def save_json_config(config):
+    ...
 
 
 @config.route("/")
