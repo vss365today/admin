@@ -1,3 +1,22 @@
+:root {
+  --body-background: #fff;
+  --body-background-accent: #bee3f8; /* tailwindcss v1.2.0 blue-200 */
+  --primary-text: #353333;
+  --primary-nav-bg: #353333;
+  --primary-link: #3ab879;
+  --details-bg: #e2e8f0; /* tailwindcss v1.2.0 gray-300 */
+  --font-stack: "Karla", sans-serif;
+  --font-stack-header: "Josefin Slab", "Karla", sans-serif;
+}
+
+body.dark {
+  --body-background: #2f3136;
+  --body-background-accent: #352c44;
+  --primary-text: #d3d3d3;
+  --primary-link: #f6f0f0;
+  --primary-nav-bg: #667eea; /* tailwindcss v1.2.0 indigo-500 */
+}
+
 *,
 *::before,
 *::after {
@@ -5,28 +24,114 @@
 }
 
 body {
-  font-family: "Karla", sans-serif;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  background-color: var(--body-background);
+  color: var(--primary-text);
+
+  font-family: var(--font-stack);
   font-size: 16px;
   line-height: 1.6;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-stack);
+  font-weight: 700;
+}
+
 a {
   text-decoration: none;
-  color: blue;
+  color: var(--primary-text);
   border-bottom: 2px solid transparent;
 }
-a:active {
+a:active,
 a:hover,
-a:focus,
-  border-color: blue;
+a:focus {
+  border-color: currentColor;
 }
 
 header {
+  padding: 0.5em 2em;
+  background-color: var(--body-background-accent);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+
   text-align: center;
+  color: var(--primary-text);
+}
+
+header h1 {
+  margin-bottom: 0;
+}
+
+header #vss365 {
+  font-family: var(--font-stack-header);
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+header #today {
+  font-family: "Bad Script";
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+header small {
+  margin-left: 0.25em;
+  display: inline;
+  font-weight: 400;
+  cursor: default;
+  font-family: var(--font-stack-header);
 }
 
 nav a {
   margin-right: 0.5rem;
   margin-left: 0.5rem;
+  font-size: 1.2rem;
+  color: var(--primary-text);
+}
+
+main {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+
+  flex: 1;
+  padding-bottom: 1rem;
+}
+
+input[type="submit"] {
+  width: 7rem;
+  height: 2rem;
+
+  background-color: transparent;
+  border: 2px solid var(--primary-text);
+  border-radius: 4px;
+
+  font-family: inherit;
   font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-text);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+  padding: 0.5rem;
+  padding-bottom: 1rem;
+  z-index: 1;
+
+  background-color: var(--body-background-accent);
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: var(--primary-text);
 }
