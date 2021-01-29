@@ -1,18 +1,18 @@
 <nav>
   {% if current_user_token.has_api_key %}
-  <a href="{{ url_for('api-key.index') }}">API Keys</a>
+  <a class=" {{ nav_cur_page(page_title, 'api') }}" href="{{ url_for('api-key.index') }}">API Keys</a>
   {% endif %}
 
   {% if current_user_token.has_settings %}
-  <a href="{{ url_for('config.index') }}">Config</a>
+  <a class=" {{ nav_cur_page(page_title, 'config') }}" href="{{ url_for('config.index') }}">Config</a>
   {% endif %}
 
   {% if current_user_token.has_host %}
-  <a href="{{ url_for('host.index') }}">Hosts</a>
+  <a class=" {{ nav_cur_page(page_title, 'host') }}" href="{{ url_for('host.index') }}">Hosts</a>
   {% endif %}
 
   {% if current_user_token.has_prompt %}
-  <a href="{{ url_for('prompt.index') }}">Prompts</a>
+  <a class=" {{ nav_cur_page(page_title, 'prompt') }}" href="{{ url_for('prompt.index') }}">Prompts</a>
   {% endif %}
 
   <a href="{{ url_for('root.logout') }}">Logout</a>
