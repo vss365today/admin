@@ -4,10 +4,6 @@ from src.core import api, forms
 from src.core.helpers import split_hashtags_into_list
 
 
-def save_json_config(config):
-    ...
-
-
 @config.route("/")
 def index():
     # Get the finder settings from the API
@@ -35,6 +31,10 @@ def index():
 
 @config.route("/save", methods=["POST"])
 def save():
+    form_prompt_position = forms.FormPromptPosition()
+    form_identifier_hashtags = forms.FormIdentifierHashtags()
+    form_filtered_hashtags = forms.FormFilteredHashtags()
+    form_finder_timings = forms.FormFinderTimings()
     abort(404)
 
     # Get the submitted form data and current config
@@ -43,9 +43,9 @@ def save():
 
     # Map the form field names to their config names
     mapping = {
-        "input-hashtags-identifier": "identifiers",
-        "input-hashtags-filter": "additionals",
-        "input-hashtag-posi": "word_index",
+        "form_identifier_hashtags": "identifiers",
+        "form_filtered_hashtags": "additionals",
+        "form_prompt_position": "word_index",
     }
 
     # Map field specific converters to format the data correctly
@@ -67,7 +67,6 @@ def save():
     current_config.update(found_key)
 
     # Save the updated config
-    save_json_config(current_config)
 
     # Go back to the config page
     flash("Configuration successfully updated.")
