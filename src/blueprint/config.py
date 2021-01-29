@@ -14,12 +14,16 @@ def index():
     finder_settings = api.get("settings")
     render_opts = {
         "form_prompt_position": forms.FormPromptPosition(),
+        "form_identifier_hashtags": forms.FormIdentifierHashtags(),
         "form_filtered_hashtags": forms.FormFilteredHashtags(),
         "finder_settings": finder_settings,
     }
 
-    # Because wtforms doesn't permit setting a default  <textarea> body
+    # Because wtforms doesn't permit setting a default <textarea> body
     # in Jinja2, we must set it here, in code :\
+    render_opts["form_identifier_hashtags"].hashtags.data = "\n".join(
+        finder_settings["identifiers"]
+    )
     render_opts["form_filtered_hashtags"].hashtags.data = "\n".join(
         finder_settings["additionals"]
     )

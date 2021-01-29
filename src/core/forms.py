@@ -37,6 +37,14 @@ class FormPromptPosition(FlaskForm):
     submit = SubmitField("Save")
 
 
+class FormIdentifierHashtags(FlaskForm):
+    hashtags = TextAreaField(
+        id="form-identifier-hashtags",
+        render_kw={"cols": "20", "rows": "10", "spellcheck": "off"},
+    )
+    submit = SubmitField("Save")
+
+
 class FormFilteredHashtags(FlaskForm):
     hashtags = TextAreaField(
         id="form-filtered-hashtags",
