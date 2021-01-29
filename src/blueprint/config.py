@@ -12,10 +12,12 @@ def save_json_config(config):
 def index():
     # Get the finder settings from the API
     finder_settings = api.get("settings")
+    finder_timings = api.get("settings", "timings")
     render_opts = {
         "form_prompt_position": forms.FormPromptPosition(),
         "form_identifier_hashtags": forms.FormIdentifierHashtags(),
         "form_filtered_hashtags": forms.FormFilteredHashtags(),
+        "form_finder_timings": forms.FormFinderTimings(),
         "finder_settings": finder_settings,
     }
 
@@ -27,6 +29,7 @@ def index():
     render_opts["form_filtered_hashtags"].hashtags.data = "\n".join(
         finder_settings["additionals"]
     )
+    render_opts["form_finder_timings"].timings.data = "\n".join(finder_timings)
     return render_template("config/index.html", **render_opts)
 
 

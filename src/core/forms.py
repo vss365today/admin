@@ -51,3 +51,11 @@ class FormFilteredHashtags(FlaskForm):
         render_kw={"cols": "20", "rows": "10", "spellcheck": "off"},
     )
     submit = SubmitField("Save")
+
+
+class FormFinderTimings(FlaskForm):
+    timings = TextAreaField(
+        id="form-finder-timings",
+        render_kw={"cols": "20", "rows": "10", "spellcheck": "off"},
+    )
+    submit = SubmitField("Save")
