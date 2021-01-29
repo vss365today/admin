@@ -17,7 +17,7 @@ def __create_api_url(*args: str) -> str:
 def __get_auth_token(user_token: bool) -> dict:
     """Create HTTP header for accessing protected API endpoints."""
     if user_token:
-        token = session["USER_API_TOKEN"]
+        token = session["TOKEN"]["token"]
 
     # Use the system API token
     else:
