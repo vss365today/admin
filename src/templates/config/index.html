@@ -30,14 +30,6 @@
   <h3>Filtered Hashtags</h3>
   <p>Do not consider these hashtags as possible prompt words. Place each individual hashtag on its own line. Lines that do not begin with a hashtag will be ignored.</p>
 
-  {#
-  <form action="{{ url_for('admin.config_save') }}" method="post">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <textarea name="input-hashtags-filter" id="input-hashtag-filter" cols="5" rows="10" spellcheck="off">{% for hashtag in json_config.additionals -%}
-      {{ hashtag }}{{ '\n' }}{% endfor -%}
-    </textarea>
-    <button type="submit" class="btn-submit">Save</button>
-  </form>
-  #}
+  {% include 'forms/filtered-hashtags.html' %}
 </section>
 {% endblock %}

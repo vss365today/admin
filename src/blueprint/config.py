@@ -1,15 +1,7 @@
-from flask import request
-from flask import abort, flash, redirect, render_template, url_for
-
+from flask import abort, flash, redirect, render_template, request, url_for
 from src.blueprint import bp_config as config
+from src.core import api, forms
 from src.core.helpers import split_hashtags_into_list
-
-from src.core.forms import FormPromptPosition
-from src.core import api
-
-
-def load_json_config() -> dict:
-    return {}
 
 
 def save_json_config(config):
@@ -18,18 +10,29 @@ def save_json_config(config):
 
 @config.route("/")
 def index():
+    # Get the finder settings from the API
+    finder_settings = api.get("settings")
     render_opts = {
-        "form_prompt_position": FormPromptPosition(),
-        "finder_settings": api.get("settings"),
+        "form_prompt_position": forms.FormPromptPosition(),
+        "form_filtered_hashtags": forms.FormFilteredHashtags(),
+        "finder_settings": finder_settings,
     }
+
+    # Because wtforms doesn't permit setting a default  <textarea> body
+    # in Jinja2, we must set it here, in code :\
+    render_opts["form_filtered_hashtags"].hashtags.data = "\n".join(
+        finder_settings["additionals"]
+    )
     return render_template("config/index.html", **render_opts)
 
 
 @config.route("/save", methods=["POST"])
 def save():
+    abort(404)
+
     # Get the submitted form data and current config
     form_data = request.form
-    current_config = load_json_config()
+    current_config = api.get("settings")
 
     # Map the form field names to their config names
     mapping = {
