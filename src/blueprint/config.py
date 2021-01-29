@@ -4,6 +4,9 @@ from flask import abort, flash, redirect, render_template, url_for
 from src.blueprint import bp_config as config
 from src.core.helpers import split_hashtags_into_list
 
+from src.core.forms import FormPromptPosition
+from src.core import api
+
 
 def load_json_config() -> dict:
     return {}
@@ -15,7 +18,10 @@ def save_json_config(config):
 
 @config.route("/")
 def index():
-    render_opts = {}
+    render_opts = {
+        "form_prompt_position": FormPromptPosition(),
+        "finder_settings": api.get("settings"),
+    }
     return render_template("config/index.html", **render_opts)
 
 

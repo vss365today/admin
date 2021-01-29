@@ -9,15 +9,7 @@
   <h3>Prompt Word Hashtag Index</h3>
   <p>Once all hashtags are filtered out, which hashtag contains the prompt word?</p>
 
-  {#
-  <form action="{{ url_for('admin.config_save') }}" method="post">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <label for="input-hashtag-posi">Hashtag position</label>
-    <input type="number" name="input-hashtag-posi" id="input-hashtag-posi" min="1" step="1" placeholder="1" value="{{ json_config.word_index + 1 }}">
-    <button type="submit" class="btn-submit">Save</button>
-  </form>
-  #}
-
+  {% include 'forms/prompt-position.html' %}
   {% include "partials/divider-dots.html" %}
 
   <h3>Identifier Hashtags</h3>

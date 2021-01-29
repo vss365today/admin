@@ -1,0 +1,8 @@
+<form method="POST" action="#">
+  {{ form_prompt_position.csrf_token }}
+
+  {{ form_prompt_position.position.label }}
+  {{ form_prompt_position.position(value=finder_settings.word_index + 1) }}
+
+  {{ form_prompt_position.submit() }}
+</form>
