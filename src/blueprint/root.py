@@ -10,7 +10,7 @@ from src.core.forms import FormUserLogin
 def index() -> str:
     """Site login page."""
     render_opts = {"form": FormUserLogin()}
-    return render_template("root/root.html", **render_opts)
+    return render_template("root/index.html", **render_opts)
 
 
 @root.route("/login", methods=["POST"])
