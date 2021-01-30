@@ -117,7 +117,7 @@ main a {
   border-color: var(--primary-text);
 }
 
-input[type="submit"] {
+/* input[type="submit"] {
   width: 7rem;
   height: 2rem;
 
@@ -130,6 +130,41 @@ input[type="submit"] {
   font-weight: 700;
   color: var(--primary-text);
   text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+} */
+
+form {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+input,
+textarea {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0.3rem;
+
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+input[type="submit"] {
+  width: 7rem;
+  height: 2rem;
+
+  border: 2px solid transparent;
+  background-color: var(--primary-nav-bg);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  background-color: transparent;
+  border-bottom-color: currentColor;
 }
 
 footer {
