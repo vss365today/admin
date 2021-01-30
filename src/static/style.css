@@ -181,3 +181,68 @@ footer {
   text-align: center;
   color: var(--primary-text);
 }
+
+/* --- Alert messages --- */
+.area-alerts {
+  width: 100%;
+  position: fixed;
+  top: 0;
+
+  z-index: 3;
+}
+
+.msg-alert {
+  display: flex;
+  align-items: center;
+
+  width: 25%;
+  height: 5.5rem;
+
+  padding: 1.7rem 0.75rem;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  position: relative;
+  border-radius: 3px;
+
+  font-size: 0.95rem;
+
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.msg-alert.hidden {
+  opacity: 0;
+}
+
+.msg-alert.info {
+  background-color: var(--primary-nav-bg);
+  box-shadow: none;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.msg-alert.error {
+  background-color: #fbd38d; /* tailwindcss v1.2.0 orange-300 */
+  color: black;
+}
+
+.msg-alert p {
+  padding: 0;
+  margin: 0;
+}
+
+.msg-alert .btn-close {
+  height: inherit;
+  margin-left: auto;
+  flex: none;
+
+  filter: invert(0.2);
+  transition: filter 0.2s ease;
+  cursor: pointer;
+}
+.msg-alert .btn-close:hover,
+.msg-alert .btn-close:focus {
+  filter: invert(0.4);
+}
