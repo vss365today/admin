@@ -1,6 +1,6 @@
-from html import unescape
 import re
-from typing import Optional
+from html import unescape
+from typing import List, Optional
 
 
 __all__ = [
@@ -11,9 +11,6 @@ __all__ = [
     "make_urls",
     "split_hashtags_into_list",
 ]
-
-
-JSON_CONFIG = {}
 
 
 def format_content(text: str) -> str:
@@ -79,9 +76,13 @@ def make_urls(text: str) -> str:
     return text
 
 
-def split_hashtags_into_list(hashtags: str) -> list:
+def split_hashtags_into_list(
+    hashtags: str, add_hashtag: bool = False
+) -> Optional[List[str]]:
+    if not hashtags:
+        return None
     return [
-        hashtag.strip().upper()
+        f"#{hashtag.strip().lower()}" if add_hashtag else hashtag.strip().lower()
         for hashtag in hashtags.split("\r\n")
-        if hashtag.startswith("#")
+        if hashtag.strip()
     ]
