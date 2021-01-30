@@ -19,10 +19,10 @@ def index():
 
     # Because wtforms doesn't permit setting a default <textarea> body
     # in Jinja2, we must set it here, in code :\
-    render_opts["form_identifier_hashtags"].hashtags.data = "\n".join(
-        finder_settings["identifiers"]
+    render_opts["form_identifier_hashtags"].identifiers.data = "\n".join(
+        hashtag.lstrip("#") for hashtag in finder_settings["identifiers"]
     )
-    render_opts["form_filtered_hashtags"].hashtags.data = "\n".join(
+    render_opts["form_filtered_hashtags"].filtered.data = "\n".join(
         finder_settings["additionals"]
     )
     render_opts["form_finder_timings"].timings.data = "\n".join(finder_timings)
