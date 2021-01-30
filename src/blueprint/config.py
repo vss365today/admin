@@ -1,6 +1,6 @@
 from functools import partial
 
-from flask import abort, flash, redirect, render_template, url_for, jsonify
+from flask import flash, redirect, render_template, url_for
 
 from src.blueprint import bp_config as config
 from src.core import api, forms
@@ -66,8 +66,8 @@ def save():
     }
 
     # Update the timings only if needed
-    # if cleaned_data["timings"] is not None:
-    #     api.put("settings", "timings", json=jsonify(cleaned_data["timings"]))
+    if cleaned_data["timings"] is not None:
+        api.put("settings", "timings", json={"timings": cleaned_data["timings"]})
 
     # Next, get the existing config
     current_config = api.get("settings")
