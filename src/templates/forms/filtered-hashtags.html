@@ -1,5 +1,5 @@
-<form method="POST" action="#">
+<form method="POST" action="{{ url_for('config.save') }}">
   {{ form_filtered_hashtags.csrf_token }}
-  {{ form_filtered_hashtags.hashtags() }}
+  {{ form_filtered_hashtags.filtered() }}
   {{ form_filtered_hashtags.submit() }}
 </form>

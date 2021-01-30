@@ -1,4 +1,4 @@
-<form method="POST" action="#">
+<form method="POST" action="{{ url_for('config.save') }}">
   {{ form_finder_timings.csrf_token }}
   {{ form_finder_timings.timings() }}
   {{ form_finder_timings.submit() }}

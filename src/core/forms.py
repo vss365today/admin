@@ -38,7 +38,7 @@ class FormPromptPosition(FlaskForm):
 
 
 class FormIdentifierHashtags(FlaskForm):
-    hashtags = TextAreaField(
+    identifiers = TextAreaField(
         id="form-identifier-hashtags",
         render_kw={"cols": "20", "rows": "10", "spellcheck": "off"},
     )
@@ -46,7 +46,7 @@ class FormIdentifierHashtags(FlaskForm):
 
 
 class FormFilteredHashtags(FlaskForm):
-    hashtags = TextAreaField(
+    filtered = TextAreaField(
         id="form-filtered-hashtags",
         render_kw={"cols": "20", "rows": "10", "spellcheck": "off"},
     )
