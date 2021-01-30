@@ -33,7 +33,7 @@ def login():
 
     # Fetch their info and store it in the session
     session["USER"], session["TOKEN"] = users.get_info(form.data["username"])
-    return redirect(url_for("root.dash"))
+    return redirect(url_for("config.index"))
 
 
 @root.route("/logout")

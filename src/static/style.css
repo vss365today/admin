@@ -167,6 +167,10 @@ input[type="submit"]:focus {
   border-bottom-color: currentColor;
 }
 
+label {
+  font-weight: 700;
+}
+
 footer {
   padding: 0.5rem;
   padding-bottom: 1rem;
