@@ -1,7 +1,10 @@
+from datetime import datetime
+
 from flask import flash, redirect, render_template, session, url_for
 
 from src.blueprint import bp_root as root
 from src.core.auth_helpers import authorize_route
+from src.core import api
 from src.core.database import users
 from src.core.forms import FormUserLogin
 
@@ -33,10 +36,11 @@ def login():
 
     # Fetch their info and store it in the session
     session["USER"], session["TOKEN"] = users.get_info(form.data["username"])
-    return redirect(url_for("config.index"))
+    return redirect(url_for("root.dash"))
 
 
 @root.route("/logout")
+@authorize_route
 def logout():
     """Logout a user."""
     # Remove the user object from the session
@@ -52,5 +56,20 @@ def logout():
 @authorize_route
 def dash():
     """Landing page after successful login."""
-    render_opts = {}
+    today = datetime.now()
+    current_hosting_date = api.get(
+        "settings",
+        "hosting",
+        user_token=False,
+        params={"date": today.isoformat()},
+    )[0]
+    render_opts = {
+        "prompt": api.get("prompt")[0],
+        "host": api.get(
+            "host",
+            "date",
+            user_token=False,
+            params={"date": today.replace(day=current_hosting_date)},
+        ),
+    }
     return render_template("root/dash.html", **render_opts)
