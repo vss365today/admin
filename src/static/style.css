@@ -171,6 +171,12 @@ label {
   font-weight: 700;
 }
 
+input[type="number"] {
+  padding: 0.2em;
+  font-size: 0.9em;
+  text-align: center;
+}
+
 footer {
   padding: 0.5rem;
   padding-bottom: 1rem;
@@ -245,4 +251,19 @@ footer {
 .msg-alert .btn-close:hover,
 .msg-alert .btn-close:focus {
   filter: invert(0.4);
+}
+
+/* Divider dots */
+div.divider {
+  margin-top: 1rem;
+  padding: 0;
+  text-align: center;
+}
+
+div.divider > span.dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
 }
