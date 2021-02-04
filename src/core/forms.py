@@ -40,7 +40,12 @@ class FormPromptPosition(FlaskForm):
 class FormIdentifierHashtags(FlaskForm):
     identifiers = TextAreaField(
         id="form-identifier-hashtags",
-        render_kw={"cols": "20", "rows": "10", "spellcheck": "off"},
+        render_kw={
+            "cols": "20",
+            "rows": "10",
+            "spellcheck": "false",
+            "autocapitalize": "none",
+        },
     )
     submit = SubmitField("Save")
 
@@ -48,7 +53,12 @@ class FormIdentifierHashtags(FlaskForm):
 class FormFilteredHashtags(FlaskForm):
     filtered = TextAreaField(
         id="form-filtered-hashtags",
-        render_kw={"cols": "20", "rows": "10", "spellcheck": "off"},
+        render_kw={
+            "cols": "20",
+            "rows": "10",
+            "spellcheck": "false",
+            "autocapitalize": "none",
+        },
     )
     submit = SubmitField("Save")
 
