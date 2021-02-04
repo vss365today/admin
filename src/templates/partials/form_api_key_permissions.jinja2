@@ -1,0 +1,29 @@
+{% macro form_api_key_permissions(api_key) %}
+  {% set is_own_key = api_key.token == session.TOKEN.token %}
+
+  <p>
+    <strong>{{ api_key.desc }}
+    {% if is_own_key %}<small>(yours)</small>{% endif %}
+    </strong>
+    <br>Date created: {{ api_key.date_created }}
+  </p>
+
+  <form action="POST" method="#" {% if is_own_key %}disabled{% endif %}>
+  {% for key, value in api_key.items() %}
+    {% if key.startswith('has_') %}
+    {% set label = key.lstrip('has').replace('_', ' ')|title %}
+
+    <label for="{{ key }}">
+      {{ label }}
+      <input type="checkbox" name="{{ key }}" value="{{ value|lower }}" {% if value %}checked{% endif %} {% if is_own_key %}disabled{% endif %}>
+    </label>
+    {% endif %}
+  {% endfor %}
+
+  {% if not is_own_key %}
+    <input type="submit" value="Update key">
+  {% endif %}
+  </form>
+
+  {{ key }}
+{% endmacro %}

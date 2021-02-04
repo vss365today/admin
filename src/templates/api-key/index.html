@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% set page_title = 'Manage API Keys' %}
+
+{% from 'partials/form_api_key_permissions.jinja2' import form_api_key_permissions %}
+
+{% block content %}
+<section>
+  <h2>Manage API Keys</h2>
+  <p>Manage API key permissions. You cannot change your own key permissions.</p>
+</section>
+
+<section>
+{% for key in api_keys %}
+  {{ form_api_key_permissions(key) }}
+{% endfor %}
+</section>
+{% endblock %}
