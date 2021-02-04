@@ -2,18 +2,22 @@
 {% set page_title = 'Dash' %}
 
 {% block content %}
-<h2>Latest Prompt</h2>
-<dl>
-  <dt><strong>Date</strong></dt>
-  <dd>{{ prompt.date }}</dd>
-  <dt><strong>Word</strong></dt>
-  <dd>{{ prompt.word }}</dd>
-  <dt><strong>Host</strong></dt>
-  <dd>{{ prompt.writer_handle }}</dd>
-  <dt><strong>URL</strong></dt>
-  <dd><a href="{{ prompt.url }}">{{ prompt.url }}</a></dd>
-</dl>
+<section style="display: inline-block; vertical-align: top;">
+  <h2>Latest Prompt</h2>
+  <dl>
+    <dt><strong>Date</strong></dt>
+    <dd>{{ prompt.date }}</dd>
+    <dt><strong>Word</strong></dt>
+    <dd>{{ prompt.word }}</dd>
+    <dt><strong>Host</strong></dt>
+    <dd>{{ prompt.writer_handle }}</dd>
+    <dt><strong>URL</strong></dt>
+    <dd><a href="{{ prompt.url }}">{{ prompt.url }}</a></dd>
+  </dl>
+</section>
 
-<h2>Current Host</h2>
-<p><a href="{{ host.url }}">{{ host.handle }}</a></p>
+<section style="display: inline-block;  vertical-align: top;">
+  <h2>Current Host</h2>
+  <p><a href="{{ host.url }}">{{ host.handle }}</a></p>
+</section>
 {% endblock %}
