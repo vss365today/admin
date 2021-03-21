@@ -11,7 +11,7 @@ __all__ = ["get", "post", "put", "delete"]
 def __create_api_url(*args: str) -> str:
     """Construct a URL to the given API endpoint."""
     endpoint = "/".join(args)
-    return f"{sys_vars.get('API_DOMAIN')}/{endpoint}/"
+    return f"{sys_vars.get('API_DOMAIN')}/{endpoint}"
 
 
 def __get_auth_token(user_token: bool) -> dict:
