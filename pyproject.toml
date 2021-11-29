@@ -9,7 +9,7 @@ license = "MIT"
 python = "^3.9"
 Flask = "^1.1.2"
 Flask-WTF = "^0.14.3"
-gunicorn = "^20.0.4"
+gunicorn = "^20.1.0"
 requests = "^2.25.1"
 WTForms-Components = "^0.10.5"
 sys-vars = {url = "https://github.com/le717/sys-vars/releases/download/v3.0.0/sys_vars-3.0.0-py3-none-any.whl"}
