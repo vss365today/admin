@@ -135,7 +135,7 @@ url = "https://github.com/le717/flask-google-fonts/releases/download/v1.0.0/flas
 
 [[package]]
 name = "flask-wtf"
-version = "1.0.0"
+version = "1.0.1"
 description = "Form rendering, validation, and CSRF protection for Flask with WTForms."
 category = "main"
 optional = false
@@ -499,7 +499,7 @@ timezone = ["python-dateutil"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "d9c556f7785e7c0aa361fe0c1cc2df5d2a0d8f1e5c087b86512c2bacc3f58e43"
+content-hash = "9a28b8f79fcf6ef3d83350fa84cdde51a2e5c3d1e9f46b0c5b0d8c8f9f51a552"
 
 [metadata.files]
 black = [
@@ -540,8 +540,8 @@ flask = [
 ]
 flask-google-fonts = []
 flask-wtf = [
-    {file = "Flask-WTF-1.0.0.tar.gz", hash = "sha256:872fbb17b5888bfc734edbdcf45bc08fb365ca39f69d25dc752465a455517b28"},
-    {file = "Flask_WTF-1.0.0-py3-none-any.whl", hash = "sha256:01feccfc395405cea48a3f36c23f0d766e2cc6fd2a5a065ad50ad3e5827ec797"},
+    {file = "Flask-WTF-1.0.1.tar.gz", hash = "sha256:34fe5c6fee0f69b50e30f81a3b7ea16aa1492a771fe9ad0974d164610c09a6c9"},
+    {file = "Flask_WTF-1.0.1-py3-none-any.whl", hash = "sha256:9d733658c80be551ce7d5bc13c7a7ac0d80df509be1e23827c847d9520f4359a"},
 ]
 gunicorn = [
     {file = "gunicorn-20.1.0-py3-none-any.whl", hash = "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e"},
