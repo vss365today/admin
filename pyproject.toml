@@ -10,7 +10,7 @@ python = "^3.9"
 Flask = "^1.1.4"
 Flask-WTF = "^1.0.1"
 gunicorn = "^20.1.0"
-requests = "^2.28.0"
+requests = "^2.28.1"
 WTForms-Components = "^0.10.5"
 sys-vars = {url = "https://github.com/le717/sys-vars/releases/download/v3.0.0/sys_vars-3.0.0-py3-none-any.whl"}
 flask-google-fonts = {url = "https://github.com/le717/flask-google-fonts/releases/download/v1.0.0/flask_google_fonts-1.0.0-py3-none-any.whl"}
