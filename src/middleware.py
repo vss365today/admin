@@ -1,32 +1,23 @@
-from datetime import datetime
-from typing import Callable, Dict, Union
+from datetime import date
 
 from flask import current_app, render_template, session
-from src.core.models.User import User
+
+from src.core.helpers import get_static_url
 from src.core.models.Token import Token
+from src.core.models.User import User
 
 
 @current_app.context_processor
-def inject_current_date() -> Dict[str, datetime]:
-    return {"current_date": datetime.now()}
-
-
-@current_app.context_processor
-def nav_cur_page() -> Dict[str, Callable]:
+def inject_context() -> dict:
     return {
-        "nav_cur_page": lambda title, has: (
-            "active" if has.strip() in title.strip().lower() else ""
-        )
-    }
-
-
-@current_app.context_processor
-def current_user_info() -> Dict[str, Union[User, Token]]:
-    return {
+        "current_date": date.today(),
         "current_user": session.get("USER"),
         "current_user_token": session.get("TOKEN"),
+        "get_static_url": get_static_url,
+        "nav_cur_page": lambda title, has: (
+            "active" if has.strip() in title.strip().lower() else ""
+        ),
     }
-
 
 @current_app.errorhandler(404)
 def page_not_found(exc) -> tuple:

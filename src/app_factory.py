@@ -1,20 +1,23 @@
 from importlib import import_module
+from os import getenv
 
 from flask import Flask
+from werkzeug.middleware.proxy_fix import ProxyFix
 
+import src.core.configuration as config
 from src.blueprint import all_blueprints
-import src.configuration as config
 from src.core.filters import ALL_FILTERS
 from src.extensions import init_extensions
 
 
-def create_app():
+def create_app() -> Flask:
     """Create an instance of the app."""
     app = Flask(__name__)
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
     # Load the app configuration
     app.config.update(config.get_app_config("default"))
-    app.config.update(config.get_app_config(app.config["ENV"]))
+    app.config.update(config.get_app_config(getenv("FLASK_ENV")))
 
     # Put the app secret key into the expected key
     app.config["SECRET_KEY"] = app.config["SECRET_KEY_ADMIN"]

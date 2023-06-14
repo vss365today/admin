@@ -1,11 +1,13 @@
 import re
 from html import unescape
-from typing import List, Optional
 
+import markupsafe
+from flask import current_app, url_for
 
 __all__ = [
     "format_content",
     "get_all_hashtags",
+    "get_static_url",
     "make_hashtags",
     "make_mentions",
     "make_urls",
@@ -30,55 +32,63 @@ def format_content(text: str) -> str:
     new_text = make_urls(new_text)
     return new_text
 
-
-def get_all_hashtags(text: str) -> Optional[tuple]:
+def get_all_hashtags(text: str) -> tuple | None:
     matches = re.findall(r"(#\w+)", text, re.I)
     return tuple(matches) if matches else None
 
 
-def make_hashtags(text: str) -> str:
-    # Start by finding all hashtags
-    hashtags = get_all_hashtags(text)
-    if hashtags is None:
-        return text
+def get_static_url(filename: str) -> str:
+    """Generate a URL to static assets based on dev/prod status."""
+    # If this config key is present, we are running in prod,
+    # which means we should pull the files from a URL
+    if (static_url := current_app.config.get("STATIC_FILES_URL")) is not None:
+        return f"{static_url}/{filename}"
 
+    # Otherwise, we're running locally, so we pull the files
+    # from the local filesystem
+    return url_for("static", filename=filename)
+
+
+def make_hashtags(text: str) -> str:
     # Go through each hashtag and make it a clickable link
-    for ht in hashtags:
+    for ht in get_all_hashtags(text):
         html = f'<a href="https://twitter.com/hashtag/{ht[1:]}">{ht}</a>'
-        text = re.sub(fr"({ht})\b", html, text)
-    return text
+        text = re.sub(rf"({ht})\b", html, text)
+    return markupsafe.soft_str(markupsafe.Markup(text))
 
 
 def make_mentions(text: str) -> str:
     # Start by finding all possible @mentions
     mentions = re.findall(r"(@\w+)", text, re.I)
-    if mentions is None:
+    if not mentions:
         return text
 
     # Go through each mention and make it a clickable link
     for mention in mentions:
-        html = f'<a href="https://twitter.com/{mention[1:]}">{mention}</a>'
+        html = markupsafe.Markup(
+            f'<a href="https://twitter.com/{mention[1:]}">{mention}</a>'
+        )
         text = text.replace(mention, html)
-    return text
+    return markupsafe.soft_str(text)
 
 
 def make_urls(text: str) -> str:
     """Convert all text links in a tweet into an HTML link."""
     # Start by finding all possible t.co text links
     links = re.findall(r"(https://t\.co/[a-z0-9]+)", text, re.I)
-    if links is None:
+    if not links:
         return text
 
     # Go through each url and make it a clickable link
     for link in links:
-        html = f'<a href="{link}">{link}</a>'
+        html = markupsafe.Markup(f'<a href="{link}">{link}</a>')
         text = text.replace(link, html)
-    return text
+    return markupsafe.soft_str(text)
 
 
 def split_hashtags_into_list(
     hashtags: str, add_hashtag: bool = False
-) -> Optional[List[str]]:
+) -> list[str] | None:
     if not hashtags:
         return None
     return [
