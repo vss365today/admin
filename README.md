@@ -5,9 +5,9 @@
 ## Required Configuration
 
 - Flask secret key (`SECRET_KEY_ADMIN`)
-- Running instance of [#vss365 today API](https://github.com/le717/vss365today-api/)
+- Running instance of [#vss365 today API v2](https://github.com/le717/vss365today-api/)
   - Operating domain (`API_DOMAIN`)
-  - API key with `has_api_key`, `has_host`, and `has_settings` permissions (`API_AUTH_TOKEN_ADMIN`)
+  - API key with `has_keys`, `has_hosts`, and `has_settings` permissions (`API_AUTH_TOKEN_ADMIN`)
 
 ## Install
 
@@ -23,6 +23,6 @@
 
 ## License
 
-2021 Caleb Ely
+2021-2023 Caleb
 
 [MIT](LICENSE)
