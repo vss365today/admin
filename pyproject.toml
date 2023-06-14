@@ -16,6 +16,8 @@ wtforms-components = "^0.10.5"
 webargs = "^8.2.0"
 passlib = "^1.7.4"
 sqlalchemy = "^2.0.16"
+alembic = "^1.11.1"
+flask-sqlalchemy = "^3.0.3"
 
 [tool.poetry.group.dev]
 optional = true

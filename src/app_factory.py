@@ -8,7 +8,7 @@ import src.core.configuration as config
 from src.blueprint import all_blueprints
 from src.core.filters import ALL_FILTERS
 from src.extensions import init_extensions
-
+from src.core.database import models
 
 def create_app() -> Flask:
     """Create an instance of the app."""
@@ -29,6 +29,12 @@ def create_app() -> Flask:
     # Load any injection/special app handler methods
     with app.app_context():
         import_module("src.middleware")
+
+        # Create a database connection
+        app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database/database.db?uri=true"
+        models.db.init_app(app)
+
 
     # Register all of the blueprints
     for bp in all_blueprints:
