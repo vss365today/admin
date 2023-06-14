@@ -16,10 +16,10 @@ class User(db.Model):
 
     _id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     username: Mapped[str] = mapped_column(
-        String(32, collation="utf8mb4_unicode_ci"), unique=True
+        String(32), unique=True
     )
     password: Mapped[str] = mapped_column(
-        String(256, collation="utf8mb4_unicode_ci"), nullable=False
+        String(256), nullable=False
     )
     date_created: Mapped[datetime] = Column(
         DateTime,
@@ -33,7 +33,7 @@ class User(db.Model):
         default=None
     )
     api_token: Mapped[str] = mapped_column(
-        String(256, collation="utf8mb4_unicode_ci"), nullable=False
+        String(256), nullable=False
     )
     is_active: Mapped[bool] = mapped_column(default=False)
     is_superuser: Mapped[bool] = mapped_column(default=False)
