@@ -10,30 +10,21 @@ db = SQLAlchemy()
 
 __all__ = ["User"]
 
+
 class User(db.Model):
     __tablename__ = "users"
     __table_args__ = {"comment": "Store the #vss365 admin users."}
 
     _id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
-    username: Mapped[str] = mapped_column(
-        String(32), unique=True
-    )
-    password: Mapped[str] = mapped_column(
-        String(256), nullable=False
-    )
+    username: Mapped[str] = mapped_column(String(32), unique=True)
+    password: Mapped[str] = mapped_column(String(256), nullable=False)
     date_created: Mapped[datetime] = Column(
         DateTime,
         nullable=False,
         default=datetime.now,
         onupdate=datetime.now,
     )
-    date_last_login: Mapped[datetime] = Column(
-        DateTime,
-        nullable=True,
-        default=None
-    )
-    api_token: Mapped[str] = mapped_column(
-        String(256), nullable=False
-    )
+    date_last_login: Mapped[datetime] = Column(DateTime, nullable=True, default=None)
+    api_token: Mapped[str] = mapped_column(String(256), nullable=False)
     is_active: Mapped[bool] = mapped_column(default=False)
     is_superuser: Mapped[bool] = mapped_column(default=False)

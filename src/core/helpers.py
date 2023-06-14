@@ -32,6 +32,7 @@ def format_content(text: str) -> str:
     new_text = make_urls(new_text)
     return new_text
 
+
 def get_all_hashtags(text: str) -> tuple | None:
     matches = re.findall(r"(#\w+)", text, re.I)
     return tuple(matches) if matches else None

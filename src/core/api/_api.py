@@ -7,6 +7,7 @@ from flask import current_app, session
 
 __all__ = ["delete", "get", "post", "put"]
 
+
 def __get_auth_token(user_token: bool) -> dict:
     """Create HTTP header for accessing protected API endpoints."""
     if user_token:
@@ -18,7 +19,7 @@ def __get_auth_token(user_token: bool) -> dict:
     return {"Authorization": f"Bearer {token}"}
 
 
-def __make_request(method: Callable, url: str, user_token: bool,**kwargs: Any) -> dict:
+def __make_request(method: Callable, url: str, user_token: bool, **kwargs: Any) -> dict:
     """Make a request to the API."""
     kwargs["headers"] = __get_auth_token(user_token)
 
@@ -43,14 +44,14 @@ def delete(url: str, user_token: bool, **kwargs: Any) -> dict:
 
 def get(url: str, user_token: bool, **kwargs: Any) -> dict:
     """Helper function for performing a GET request."""
-    return __make_request(httpx.get, url, user_token,**kwargs)
+    return __make_request(httpx.get, url, user_token, **kwargs)
 
 
 def post(url: str, user_token: bool, **kwargs: Any) -> dict:
     """Helper function for performing a POST request."""
-    return __make_request(httpx.post, url, user_token,**kwargs)
+    return __make_request(httpx.post, url, user_token, **kwargs)
 
 
 def put(url: str, user_token: bool, **kwargs: Any) -> dict:
     """Helper function for performing a PUT request."""
-    return __make_request(httpx.put, url, user_token,**kwargs)
+    return __make_request(httpx.put, url, user_token, **kwargs)

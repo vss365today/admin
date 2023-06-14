@@ -22,7 +22,6 @@ def login():
     # Confirm we have form data
     form = FormUserLogin()
     if form.validate_on_submit():
-
         # Validate the username/password combo
         valid_login = users.login(form.data["username"], form.data["password"])
 

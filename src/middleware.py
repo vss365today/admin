@@ -19,6 +19,7 @@ def inject_context() -> dict:
         ),
     }
 
+
 @current_app.errorhandler(404)
 def page_not_found(exc) -> tuple:
     return render_template("partials/errors/404.html"), 404

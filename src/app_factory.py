@@ -10,6 +10,7 @@ from src.core.filters import ALL_FILTERS
 from src.extensions import init_extensions
 from src.core.database import models
 
+
 def create_app() -> Flask:
     """Create an instance of the app."""
     app = Flask(__name__)
@@ -36,7 +37,6 @@ def create_app() -> Flask:
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///     database.db?uri=true"
         models.db.init_app(app)
-
 
     # Register all of the blueprints
     for bp in all_blueprints:
