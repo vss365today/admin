@@ -32,7 +32,7 @@ def get_info(username: str) -> User:
 
 
 def login(username: str, password: str) -> bool:
-    """Atempt to login a user."""
+    """Attempt to login a user."""
     # Query the database for this username
     sql = get_sql("user-login")
     with connect_to_db() as db:

@@ -1,8 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms.fields.html5 import IntegerField
-from wtforms.fields.simple import PasswordField, SubmitField, TextAreaField, TextField
-from wtforms.validators import DataRequired, Length
-
+from wtforms.fields import (
+    IntegerField,
+    PasswordField,
+    StringField,
+    SubmitField,
+    TextAreaField,
+)
+from wtforms.validators import InputRequired, Length
 
 __all__ = ["FormUserLogin", "FormPromptPosition"]
 
@@ -10,17 +14,17 @@ __all__ = ["FormUserLogin", "FormPromptPosition"]
 class FormUserLogin(FlaskForm):
     """User login form."""
 
-    username = TextField(
+    username = StringField(
         "Username",
         id="form-login-username",
-        validators=[DataRequired()],
+        validators=[InputRequired()],
         render_kw={"placeholder": "vss365Writer"},
     )
 
     password = PasswordField(
         "Password",
         id="form-login-password",
-        validators=[DataRequired()],
+        validators=[InputRequired()],
     )
     submit = SubmitField("Login")
 
@@ -31,7 +35,7 @@ class FormPromptPosition(FlaskForm):
     position = IntegerField(
         "Hashtag position",
         id="form-prompt-position",
-        validators=[DataRequired(), Length(min=1)],
+        validators=[InputRequired(), Length(min=1)],
         render_kw={"step": "1", "placeholder": "1", "inputmode": "numeric"},
     )
     submit = SubmitField("Save")
