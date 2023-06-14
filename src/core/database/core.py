@@ -10,7 +10,7 @@ __all__ = ["connect_to_db", "convert_int_to_bool", "convert_bool_to_int", "get_s
 @contextmanager
 def connect_to_db() -> Iterator[sqlite3.Cursor]:
     """Context manager to connect to the local database."""
-    db = sqlite3.connect((Path() / "db" / "database.db"))
+    db = sqlite3.connect((Path() / "database" / "original.db"))
     db.row_factory = sqlite3.Row
     cursor = db.cursor()
     try:
@@ -37,4 +37,4 @@ def convert_bool_to_int(data: dict) -> dict:
 
 def get_sql(script_name: str) -> str:
     """Get the contents of a SQL script."""
-    return (Path() / "db" / f"{script_name}.sql").read_text()
+    return (Path() / "database" / "queries" / f"{script_name}.sql").read_text()
