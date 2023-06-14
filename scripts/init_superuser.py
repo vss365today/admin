@@ -7,13 +7,17 @@ from passlib.hash import pbkdf2_sha256
 from src.core import api
 
 
-def main():
+def main() -> None:
     """Create the initial admin superuser."""
+    # TODO: This whole thing is broken atm
+    print("This script is broken. Fix it to use sqlalchemy and API v2.")
+    return None
+
     # Ask for the username
     username = input("Enter the desired username: ").strip()
     if not username:
-        input("Please provide a username!")
-        raise SystemExit(1)
+        input("A username must be provided.")
+        return None
 
     # Generate a random password and hash it
     password = pwd.genword("secure", length=20)
@@ -47,7 +51,7 @@ def main():
     if cursor.fetchone() is None:
         cursor.execute((Path() / "db" / "0-schema.sql").read_text())
 
-    # Record this user and API tokenin the local db
+    # Record this user and API token in the local db
     sql_create_user = (Path() / "db" / "1-user-create.sql").read_text()
     sql_create_token = (Path() / "db" / "4-user-update-api-token.sql").read_text()
     cursor.execute(
@@ -64,7 +68,7 @@ def main():
     # Report the creation results
     print(f"Superuser {username} created with password {password}")
     input("Press enter to close.")
-    raise SystemExit(0)
+    return None
 
 
 if __name__ == "__main__":
