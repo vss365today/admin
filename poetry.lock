@@ -882,13 +882,13 @@ test = ["flake8 (>=2.4.0)", "isort (>=4.2.2)", "pytest (>=2.2.3)"]
 
 [[package]]
 name = "webargs"
-version = "8.2.0"
+version = "8.3.0"
 description = "Declarative parsing and validation of HTTP request objects, with built-in support for popular web frameworks, including Flask, Django, Bottle, Tornado, Pyramid, Falcon, and aiohttp."
 optional = false
 python-versions = ">=3.7.2"
 files = [
-    {file = "webargs-8.2.0-py3-none-any.whl", hash = "sha256:6746327faf549533bf30be7333f99541b6c60a85f23acf1bb0bea68498e3bcd7"},
-    {file = "webargs-8.2.0.tar.gz", hash = "sha256:99d68940c452e07726485a15fef43f12f8ae6c0c5b391bcba76065d4527fb85d"},
+    {file = "webargs-8.3.0-py3-none-any.whl", hash = "sha256:69d7ac874d746b6f4f47eac923c2abf6fc7788dfca2ebcfd9f4ac52ec9646446"},
+    {file = "webargs-8.3.0.tar.gz", hash = "sha256:cab207941b0686c4d086c823632ddcd4343151644341a32fcf50b8eaa71e31c7"},
 ]
 
 [package.dependencies]
@@ -896,10 +896,10 @@ marshmallow = ">=3.0.0"
 packaging = "*"
 
 [package.extras]
-dev = ["Django (>=2.2.0)", "Flask (>=0.12.5)", "aiohttp (>=3.0.8)", "bottle (>=0.12.13)", "falcon (>=2.0.0)", "flake8 (==4.0.1)", "flake8-bugbear (==22.7.1)", "mypy (==0.961)", "pre-commit (>=2.4,<3.0)", "pyramid (>=1.9.1)", "pytest", "pytest-aiohttp (>=0.3.0)", "pytest-asyncio", "tornado (>=4.5.2)", "tox", "webtest (==3.0.0)", "webtest-aiohttp (==2.0.0)"]
-docs = ["Django (>=2.2.0)", "Flask (>=0.12.5)", "Sphinx (==5.0.2)", "aiohttp (>=3.0.8)", "bottle (>=0.12.13)", "falcon (>=2.0.0)", "furo (==2022.6.21)", "pyramid (>=1.9.1)", "sphinx-issues (==3.0.1)", "tornado (>=4.5.2)"]
+dev = ["Django (>=2.2.0)", "Flask (>=0.12.5)", "aiohttp (>=3.0.8)", "bottle (>=0.12.13)", "falcon (>=2.0.0)", "flake8 (==6.0.0)", "flake8-bugbear (==23.6.5)", "mypy (==1.4.1)", "pre-commit (>=2.4,<4.0)", "pyramid (>=1.9.1)", "pytest", "pytest-aiohttp (>=0.3.0)", "pytest-asyncio", "tornado (>=4.5.2)", "tox", "webtest (==3.0.0)", "webtest-aiohttp (==2.0.0)"]
+docs = ["Django (>=2.2.0)", "Flask (>=0.12.5)", "Sphinx (==7.0.1)", "aiohttp (>=3.0.8)", "bottle (>=0.12.13)", "falcon (>=2.0.0)", "furo (==2023.5.20)", "pyramid (>=1.9.1)", "sphinx-issues (==3.0.1)", "tornado (>=4.5.2)"]
 frameworks = ["Django (>=2.2.0)", "Flask (>=0.12.5)", "aiohttp (>=3.0.8)", "bottle (>=0.12.13)", "falcon (>=2.0.0)", "pyramid (>=1.9.1)", "tornado (>=4.5.2)"]
-lint = ["flake8 (==4.0.1)", "flake8-bugbear (==22.7.1)", "mypy (==0.961)", "pre-commit (>=2.4,<3.0)"]
+lint = ["flake8 (==6.0.0)", "flake8-bugbear (==23.6.5)", "mypy (==1.4.1)", "pre-commit (>=2.4,<4.0)"]
 tests = ["Django (>=2.2.0)", "Flask (>=0.12.5)", "aiohttp (>=3.0.8)", "bottle (>=0.12.13)", "falcon (>=2.0.0)", "pyramid (>=1.9.1)", "pytest", "pytest-aiohttp (>=0.3.0)", "pytest-asyncio", "tornado (>=4.5.2)", "webtest (==3.0.0)", "webtest-aiohttp (==2.0.0)"]
 
 [[package]]
@@ -962,4 +962,4 @@ timezone = ["python-dateutil"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "b68dc901ae02e7bc4bd64f610dede02d7fa71f6d663f393697d5c7665ae86c0e"
+content-hash = "818210aba48d366832fc07fbcc0b72356edc6a683c1d05a96b0e47a41eb3ea38"
