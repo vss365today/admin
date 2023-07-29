@@ -31,7 +31,7 @@ def create_app() -> Flask:
     with app.app_context():
         import_module("src.middleware")
 
-        # Create a database connectionN
+        # Create a database connection
         # NOTE: Due to some WEIRDNESS with sqlalchemy, the spaces are INTENTIONAL.
         # DO NOT REMOVE THE SPACES. EVER.
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
