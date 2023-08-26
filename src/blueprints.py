@@ -9,7 +9,7 @@ def _factory(
     # Create the blueprint
     blueprint = Blueprint(
         partial_module_string,
-        f"src.blueprint.{partial_module_string}",
+        f"src.views.{partial_module_string}",
         url_prefix=url_prefix,
     )
 
