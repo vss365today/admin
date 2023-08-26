@@ -3,7 +3,7 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy.types import BigInteger, DateTime, String
+from sqlalchemy.types import Integer, DateTime, String
 
 db = SQLAlchemy()
 
@@ -13,9 +13,12 @@ __all__ = ["User"]
 
 class User(db.Model):
     __tablename__ = "users"
-    __table_args__ = {"comment": "Store the #vss365 admin users."}
+    __table_args__ = {
+        "comment": "Store the #vss365 admin users.",
+        "sqlite_autoincrement": True,
+    }
 
-    _id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    _id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     username: Mapped[str] = mapped_column(String(32), unique=True)
     password: Mapped[str] = mapped_column(String(256), nullable=False)
     date_created: Mapped[datetime] = Column(

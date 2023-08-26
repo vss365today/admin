@@ -36,4 +36,5 @@ def create_app() -> Flask:
         # DO NOT REMOVE THE SPACES. EVER.
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///     admin.db?uri=true"
         models.db.init_app(app)
+        models.db.create_all()
     return app
