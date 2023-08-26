@@ -5,7 +5,7 @@ from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 import src.core.configuration as config
-from src.blueprint import all_blueprints
+from src.blueprints import all_blueprints
 from src.core.database import models
 from src.core.filters import ALL_FILTERS
 from src.extensions import init_extensions

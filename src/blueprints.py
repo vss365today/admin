@@ -20,10 +20,10 @@ def _factory(
     return blueprint
 
 
-bp_root = _factory("root", "/")
-bp_keys = _factory("keys", "/keys", True)
-bp_config = _factory("config", "/config", True)
-bp_host = _factory("host", "/host", True)
-bp_prompt = _factory("prompt", "/prompt", True)
+root = _factory("root", "/")
+keys = _factory("keys", "/keys", True)
+config = _factory("config", "/config", True)
+hosts = _factory("host", "/host", True)
+prompts = _factory("prompt", "/prompt", True)
 
-all_blueprints = (bp_keys, bp_root, bp_config, bp_host, bp_prompt)
+all_blueprints = (keys, root, config, hosts, prompts)

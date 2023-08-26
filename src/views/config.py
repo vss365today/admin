@@ -2,7 +2,7 @@ from functools import partial
 
 from flask import flash, redirect, render_template, url_for
 
-from src.blueprint import bp_config as config
+from src.blueprints import config
 from src.core import api, forms
 from src.core.helpers import split_hashtags_into_list
 

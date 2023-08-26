@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask import flash, redirect, render_template, session, url_for
 
-from src.blueprint import bp_root as root
+from src.blueprints import root
 from src.core import database as db
 from src.core.api import v2
 from src.core.auth_helpers import authorize_route, is_logged_in
