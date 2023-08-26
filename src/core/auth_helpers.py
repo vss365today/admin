@@ -1,14 +1,14 @@
 import functools
+from typing import NoReturn
 
 from flask import abort, session
-
 
 __all__ = ["authorize_blueprint", "authorize_route", "is_logged_in"]
 
 
-def authorize_blueprint():
+def authorize_blueprint() -> None | NoReturn:
     """Determine if the request to a blueprint has been properly authorized."""
-    if "USER" not in session:
+    if not is_logged_in():
         abort(403)
 
 

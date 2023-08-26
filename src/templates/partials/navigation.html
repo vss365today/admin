@@ -1,19 +1,21 @@
 <nav>
-  <a class="{{ nav_cur_page(page_title, 'dash') }}" href="{{ url_for('root.dash') }}">Dash</a>
+  <a class="{{ nav_cur_page(page_title, 'dashboard') }}" href="{{ url_for('root.dashboard') }}">Dashboard</a>
 
-  {% if current_user_token.has_api_key %}
+  {% if current_user_token.has_keys %}
   <a class="{{ nav_cur_page(page_title, 'api') }}" href="{{ url_for('api-key.index') }}">API Keys</a>
   {% endif %}
 
+  {#
   {% if current_user_token.has_settings %}
   <a class="{{ nav_cur_page(page_title, 'config') }}" href="{{ url_for('config.index') }}">Config</a>
   {% endif %}
+  #}
 
-  {% if current_user_token.has_host %}
+  {% if current_user_token.has_hosts %}
   <a class="{{ nav_cur_page(page_title, 'host') }}" href="{{ url_for('host.index') }}">Hosts</a>
   {% endif %}
 
-  {% if current_user_token.has_prompt %}
+  {% if current_user_token.has_prompts %}
   <a class="{{ nav_cur_page(page_title, 'prompt') }}" href="{{ url_for('prompt.index') }}">Prompts</a>
   {% endif %}
 

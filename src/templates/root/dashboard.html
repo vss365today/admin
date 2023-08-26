@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% set page_title = 'Dash' %}
+{% set page_title = 'Dashboard' %}
 
 {% block content %}
 <section style="display: inline-block; vertical-align: top;">
@@ -10,7 +10,7 @@
     <dt><strong>Word</strong></dt>
     <dd>{{ prompt.word }}</dd>
     <dt><strong>Host</strong></dt>
-    <dd>{{ prompt.writer_handle }}</dd>
+    <dd>{{ prompt.host.handle }}</dd>
     <dt><strong>URL</strong></dt>
     <dd><a href="{{ prompt.url }}">{{ prompt.url }}</a></dd>
   </dl>

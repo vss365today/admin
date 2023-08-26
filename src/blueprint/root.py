@@ -3,9 +3,9 @@ from datetime import datetime
 from flask import flash, redirect, render_template, session, url_for
 
 from src.blueprint import bp_root as root
-from src.core.auth_helpers import authorize_route, is_logged_in
-from src.core import api
 from src.core import database as db
+from src.core.api import v2
+from src.core.auth_helpers import authorize_route, is_logged_in
 from src.core.forms import FormUserLogin
 
 
@@ -56,20 +56,8 @@ def logout():
 @authorize_route
 def dashboard():
     """Landing page after successful login."""
-    today = datetime.now()
-    current_hosting_date = api.get(
-        "settings",
-        "hosting",
-        user_token=False,
-        params={"date": today.isoformat()},
-    )[0]
     render_opts = {
-        "prompt": api.get("prompt")[0],
-        "host": api.get(
-            "host",
-            "date",
-            user_token=False,
-            params={"date": today.replace(day=current_hosting_date)},
-        ),
+        "prompt": v2.get("prompts/", user_token=False)[0],
+        "host": v2.get("hosts", "current", user_token=False),
     }
-    return render_template("root/dash.html", **render_opts)
+    return render_template("root/dashboard.html", **render_opts)
