@@ -1,15 +1,11 @@
 from datetime import datetime, timezone
 from typing import Any
-from passlib.hash import pbkdf2_sha256
 
-from src.core.api import v2
-from src.core.database.core import connect_to_db, convert_int_to_bool, get_sql
+from passlib.hash import pbkdf2_sha256
 from sqlalchemy.exc import NoResultFound
 
-# from src.core.models import User
-
+from src.core.api import v2
 from src.core.database.models import User, db
-
 
 __all__ = ["get_info", "login", "set_last_login"]
 
