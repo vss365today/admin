@@ -19,23 +19,20 @@ def index() -> str:
 @root.route("/login", methods=["POST"])
 def login():
     """Login a user."""
-    # Confirm we have form data
+    # We're already logged in. Don't attempt to do it again
+    if "USER" in session:
+        return redirect(url_for("root.dashboard"))
+
+    # Attempt to validate the username/password combo
     form = FormUserLogin()
     if form.validate_on_submit():
-        # Validate the username/password combo
-        valid_login = users.login(form.data["username"], form.data["password"])
-
-        # That didn't work
-        if not valid_login:
+        if not users.login(form.data["username"], form.data["password"]):
             flash("That is not a valid login.", "error")
             return redirect(url_for("root.index"))
 
-    # Update their last login datetime
-    users.set_last_login(form.data["username"])
-
     # Fetch their info and store it in the session
     session["USER"], session["TOKEN"] = users.get_info(form.data["username"])
-    return redirect(url_for("root.dash"))
+    return redirect(url_for("root.dashboard"))
 
 
 @root.route("/logout")
@@ -51,9 +48,9 @@ def logout():
     return redirect(url_for("root.index"))
 
 
-@root.route("/dash")
+@root.route("/dashboard")
 @authorize_route
-def dash():
+def dashboard():
     """Landing page after successful login."""
     today = datetime.now()
     current_hosting_date = api.get(

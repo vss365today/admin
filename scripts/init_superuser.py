@@ -27,7 +27,7 @@ def main() -> None:
 
     # Create an API token for this user, giving it all permissions
     request_body = {
-        "desc": f"Admin superuser {username} API key",
+        "desc": f"Admin superuser {username!r} API key",
         "has_archive": True,
         "has_notifications": True,
         "has_hosts": True,

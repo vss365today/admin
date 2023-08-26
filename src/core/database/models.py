@@ -8,7 +8,7 @@ from sqlalchemy.types import Integer, DateTime, String
 db = SQLAlchemy()
 
 
-__all__ = ["User"]
+__all__ = ["User", "db"]
 
 
 class User(db.Model):

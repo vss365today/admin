@@ -1,55 +1,55 @@
-from typing import Literal
-
+from datetime import datetime, timezone
+from typing import Any
 from passlib.hash import pbkdf2_sha256
 
-from src.core import api
+from src.core.api import v2
 from src.core.database.core import connect_to_db, convert_int_to_bool, get_sql
-from src.core.models.User import User
-from src.core.models.Token import Token
+from sqlalchemy.exc import NoResultFound
+
+# from src.core.models import User
+
+from src.core.database.models import User, db
 
 
 __all__ = ["get_info", "login", "set_last_login"]
 
 
-def get_info(username: str) -> User:
+def get_info(username: str) -> tuple[dict[str, Any], dict[str, Any]]:
     """Get the user's information."""
-    sql = get_sql("user-fetch-info")
-
-    # Start by getting the user's account info
-    with connect_to_db() as db:
-        db.execute(sql, {"username": username})
-        user_info = convert_int_to_bool(dict(db.fetchone()))
-
-    # Get the user's token permissions
-    token_perms: dict = api.get(
-        "api-key", user_token=False, params={"token": user_info["api_token"]}
+    # Get some account information
+    account = (
+        db.session.execute(
+            db.select(
+                User.username, User.api_token, User.is_superuser, User.date_last_login
+            ).filter_by(username=username.strip())
+        )
+        .first()
+        ._asdict()
     )
 
-    # Store the permissions in a dataclass too
-    token_perms = {k: v for k, v in token_perms.items() if k.startswith("has_")}
-    token = Token(user_info["api_token"], **token_perms)
-    return User(username, **user_info), token
+    # Get the account's token permissions
+    token_perms: dict = v2.get("keys", account["api_token"], user_token=False)
+    return account, token_perms
 
 
 def login(username: str, password: str) -> bool:
     """Attempt to login a user."""
-    # Query the database for this username
-    sql = get_sql("user-login")
-    with connect_to_db() as db:
-        db.execute(sql, {"username": username.strip()})
-        user_pass = db.fetchone()
+    # Try to pull an active account with the specified username
+    try:
+        account = db.session.execute(
+            db.select(User).filter_by(username=username.strip(), is_active=True)
+        ).scalar_one()
 
-    # That username can't be found
-    if user_pass is None:
+    # No account with that username exists
+    except NoResultFound:
         return False
 
-    # Confirm this is a correct password
-    return pbkdf2_sha256.verify(password.strip(), user_pass["password"])
+    # The specified password doesn't match what we have on file
+    if not pbkdf2_sha256.verify(password.strip(), account.password):
+        return False
 
-
-def set_last_login(username: str) -> Literal[True]:
-    """Update this user's last login datetime."""
-    sql = get_sql("user-login-update")
-    with connect_to_db() as db:
-        db.execute(sql, {"username": username.strip()})
+    # We can successfully log in! Record the last login time and get out of here
+    account.date_last_login = datetime.now(tz=timezone.utc)
+    db.session.commit()
+    del account
     return True

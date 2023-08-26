@@ -3,8 +3,6 @@ from datetime import date
 from flask import current_app, render_template, session
 
 from src.core.helpers import get_static_url
-from src.core.models.Token import Token
-from src.core.models.User import User
 
 
 @current_app.context_processor
