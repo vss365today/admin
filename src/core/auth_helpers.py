@@ -3,7 +3,7 @@ import functools
 from flask import abort, session
 
 
-__all__ = ["authorize_blueprint", "authorize_route"]
+__all__ = ["authorize_blueprint", "authorize_route", "is_logged_in"]
 
 
 def authorize_blueprint():
@@ -25,3 +25,8 @@ def authorize_route(func):
         return func(*args, **kwargs)
 
     return wrap
+
+
+def is_logged_in() -> bool:
+    """Determine if an admin is logged in."""
+    return "USER" in session and "TOKEN" in session
