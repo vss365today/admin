@@ -34,6 +34,6 @@ def create_app() -> Flask:
 
         # NOTE: Due to some WEIRDNESS with sqlalchemy, the spaces are INTENTIONAL.
         # DO NOT REMOVE THE SPACES. EVER.
-        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///     database.db?uri=true"
+        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///     admin.db?uri=true"
         models.db.init_app(app)
     return app

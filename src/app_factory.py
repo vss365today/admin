@@ -6,9 +6,9 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 import src.core.configuration as config
 from src.blueprint import all_blueprints
+from src.core.database import models
 from src.core.filters import ALL_FILTERS
 from src.extensions import init_extensions
-from src.core.database import models
 
 
 def create_app() -> Flask:
@@ -35,8 +35,9 @@ def create_app() -> Flask:
         # NOTE: Due to some WEIRDNESS with sqlalchemy, the spaces are INTENTIONAL.
         # DO NOT REMOVE THE SPACES. EVER.
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///     database.db?uri=true"
+        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///     admin.db?uri=true"
         models.db.init_app(app)
+        models.db.create_all()
 
     # Register all of the blueprints
     for bp in all_blueprints:
