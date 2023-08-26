@@ -1,5 +1,5 @@
 {% macro form_api_key_permissions(api_key) %}
-  {% set is_own_key = api_key.token == session.TOKEN.token %}
+  {% set is_own_key = api_key.token == session.USER.api_token %}
 
   <p>
     <strong>{{ api_key.desc }}

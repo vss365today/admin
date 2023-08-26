@@ -11,7 +11,7 @@ __all__ = ["delete", "get", "post", "put"]
 def __get_auth_token(user_token: bool) -> dict:
     """Create HTTP header for accessing protected API endpoints."""
     if user_token:
-        token = session["TOKEN"]["token"]
+        token = session["USER"]["api_token"]
 
     # Use the system API token
     else:

@@ -2,7 +2,7 @@
   <a class="{{ nav_cur_page(page_title, 'dashboard') }}" href="{{ url_for('root.dashboard') }}">Dashboard</a>
 
   {% if current_user_token.has_keys %}
-  <a class="{{ nav_cur_page(page_title, 'api') }}" href="{{ url_for('api-key.index') }}">API Keys</a>
+  <a class="{{ nav_cur_page(page_title, 'api') }}" href="{{ url_for('keys.index') }}">API Keys</a>
   {% endif %}
 
   {#

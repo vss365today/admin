@@ -21,9 +21,9 @@ def _factory(
 
 
 bp_root = _factory("root", "/")
-bp_api_key = _factory("api-key", "/api-key", True)
+bp_keys = _factory("keys", "/keys", True)
 bp_config = _factory("config", "/config", True)
 bp_host = _factory("host", "/host", True)
 bp_prompt = _factory("prompt", "/prompt", True)
 
-all_blueprints = (bp_api_key, bp_root, bp_config, bp_host, bp_prompt)
+all_blueprints = (bp_keys, bp_root, bp_config, bp_host, bp_prompt)
