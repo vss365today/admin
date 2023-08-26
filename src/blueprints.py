@@ -23,7 +23,7 @@ def _factory(
 root = _factory("root", "/")
 keys = _factory("keys", "/keys", True)
 config = _factory("config", "/config", True)
-hosts = _factory("host", "/host", True)
-prompts = _factory("prompt", "/prompt", True)
+hosts = _factory("hosts", "/hosts", True)
+prompts = _factory("prompts", "/prompts", True)
 
 all_blueprints = (keys, root, config, hosts, prompts)

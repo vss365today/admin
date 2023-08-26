@@ -12,11 +12,11 @@
   #}
 
   {% if current_user_token.has_hosts %}
-  <a class="{{ nav_cur_page(page_title, 'host') }}" href="{{ url_for('host.index') }}">Hosts</a>
+  <a class="{{ nav_cur_page(page_title, 'host') }}" href="{{ url_for('hosts.index') }}">Hosts</a>
   {% endif %}
 
   {% if current_user_token.has_prompts %}
-  <a class="{{ nav_cur_page(page_title, 'prompt') }}" href="{{ url_for('prompt.index') }}">Prompts</a>
+  <a class="{{ nav_cur_page(page_title, 'prompt') }}" href="{{ url_for('prompts.index') }}">Prompts</a>
   {% endif %}
 
   <a href="{{ url_for('root.logout') }}">Logout</a>
