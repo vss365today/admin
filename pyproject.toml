@@ -15,7 +15,7 @@ httpx = "^0.25.0"
 wtforms-components = "^0.10.5"
 webargs = "^8.3.0"
 passlib = "^1.7.4"
-sqlalchemy = "^2.0.20"
+sqlalchemy = "^2.0.21"
 flask-sqlalchemy = "^3.0.5"
 
 [tool.poetry.group.dev]
