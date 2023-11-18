@@ -2,6 +2,8 @@
 
 > Administration control panel for #vss365 today
 
+**Note**: This project is now archived. It is also in an incomplete state and probably unusable.
+
 ## Required Configuration
 
 - Flask secret key (`SECRET_KEY_ADMIN`)
